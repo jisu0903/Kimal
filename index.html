@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💢 일본어 교과서 암기2💦</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #fff8f7;
+      color: #393333;
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 27px;
+      margin: 0 0 5px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #ad8585;
+      font-size: 14px;
+      margin-bottom: 35px;
+      font-weight: 600;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .menu button {
+      border: 1px solid #f0dada;
+      background: white;
+      color: #644c4c;
+      border-radius: 15px;
+      padding: 20px 10px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 3px 8px rgba(120, 75, 75, 0.05);
+    }
+
+    .menu button:hover {
+      background: #fff0f0;
+      transform: translateY(-2px);
+    }
+
+    .menu button:last-child {
+      grid-column: span 2;
+      background: #f8e5e5;
+    }
+
+    .study {
+      display: none;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .back-button {
+      border: none;
+      background: #f5e5e5;
+      color: #765959;
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .progress {
+      font-size: 13px;
+      color: #a98d8d;
+      margin-bottom: 13px;
+    }
+
+    .card {
+      width: 100%;
+      min-height: 280px;
+      background: white;
+      border: 1px solid #f0dddd;
+      border-radius: 23px;
+      box-shadow: 0 7px 22px rgba(120, 75, 75, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .card:active {
+      background: #fffafa;
+    }
+
+    .front {
+      font-size: 43px;
+      font-weight: 700;
+      word-break: keep-all;
+    }
+
+    .reading {
+      font-size: 25px;
+      font-weight: 700;
+      color: #bd7777;
+      margin-bottom: 15px;
+    }
+
+    .meaning {
+      font-size: 21px;
+      color: #554747;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 23px;
+      }
+
+      .front {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>💢 일본어 교과서 암기2💦</h1>
+    <div class="subtitle">209 파이팅</div>
+
+    <section id="menu" class="menu">
+      <button onclick="startLesson('4과')">4과</button>
+      <button onclick="startLesson('5과')">5과</button>
+      <button onclick="startLesson('6과')">6과</button>
+      <button onclick="startLesson('7과')">7과</button>
+      <button onclick="startLesson('8과')">8과</button>
+      <button onclick="startLesson('기타 한자')">기타 한자</button>
+      <button onclick="startLesson('전체 연습')">전체 연습</button>
+    </section>
+
+    <section id="study" class="study">
+      <div class="topbar">
+        <button class="back-button" onclick="goMenu()">← 메뉴</button>
+      </div>
+
+      <div id="progress" class="progress"></div>
+
+      <div id="card" class="card" onclick="flipCard()">
+        <div id="cardContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 4과
+    const lesson4Words = [
+      ["三浦", "みうら", "미우라"],
+      ["細川", "ほそかわ", "호소카와"],
+      ["山下", "やました", "야마시타"],
+      ["前田", "まえだ", "마에다"],
+      ["田中", "たなか", "다나카"],
+      ["東西南北", "とうざいなんぼく", "동서남북"],
+      ["お辞儀", "おじぎ", "오지기"],
+      ["お土産", "おみやげ", "오미야게"],
+      ["根付", "ねづく", "식물이 뿌리를 내리다"],
+      ["寝付", "ねつく", "오랜 병을 앓다"],
+      ["お中元", "おちゅうげん", "오추겐"],
+      ["お歳暮", "おせいぼ", "오세이보"],
+      ["先生", "せんせい", "선생님"],
+      ["失礼", "しつれい", "실례"]
+    ];
+
+    // 5과
+    const lesson5Words = [
+      ["部活", "ぶかつ", "동아리 활동"],
+      ["文化祭", "ぶんかさい", "문화제"],
+      ["質問", "しつもん", "질문"],
+      ["発表", "はっぴょう", "발표"],
+      ["元気", "げんきだ", "건강하다"],
+      ["社長", "しゃちょう", "사장"],
+      ["年", "ねん", "년 / 학년"],
+      ["組", "くみ", "반"],
+      ["売", "うる", "팔다"],
+      ["お茶", "おちゃ", "차"],
+      ["買", "かう", "사다"],
+      ["焼", "やき", "구이, 구운 것"]
+    ];
+
+    // 6과
+    const lesson6Words = [
+      ["年神様", "としがみさま", "새해의 신"],
+      ["お正月", "おしょうがつ", "정월, 설날"],
+      ["お年玉", "おとしだま", "세뱃돈"],
+      ["門松", "かどまつ", "가도마쓰"],
+      ["鏡餅", "かがみもち", "가가미모치"],
+      ["料理", "りょうり", "요리"],
+      ["関東", "かんとう", "간토"],
+      ["関西", "かんさい", "간사이"],
+      ["元日", "がんじつ", "새해 첫날"],
+      ["成人", "せいじん", "성인"],
+      ["花見", "はなみ", "꽃구경, 벚꽃놀이"],
+      ["七夕", "たなばた", "칠석"],
+      ["月見", "つきみ", "달맞이"],
+      ["七五三", "しちごさん", "시치고산"],
+      ["昭和", "しょうわ", "쇼와"],
+      ["子ども", "こども", "아이"],
+      ["お世話", "おせわ", "신세"],
+      ["練習", "れんしゅう", "연습"],
+      ["次", "つぎ", "다음"],
+      ["大会", "たいかい", "대회"],
+      ["今年", "ことし", "올해"],
+      ["家族", "かぞく", "가족"],
+      ["山梨県", "やまなしけん", "야마나시현"]
+    ];
+
+    // 나중에 추가할 단어
+    const lesson7Words = [];
+    const lesson8Words = [];
+    const otherWords = [];
+
+    const lessons = {
+      "4과": lesson4Words,
+      "5과": lesson5Words,
+      "6과": lesson6Words,
+      "7과": lesson7Words,
+      "8과": lesson8Words,
+      "기타 한자": otherWords
+    };
+
+    const allWords = [
+      ...lesson4Words,
+      ...lesson5Words,
+      ...lesson6Words,
+      ...lesson7Words,
+      ...lesson8Words,
+      ...otherWords
+    ];
+
+    let currentWords = [];
+    let shuffledWords = [];
+    let currentIndex = 0;
+    let isFlipped = false;
+
+    function shuffle(array) {
+      const result = [...array];
+
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+
+      return result;
+    }
+
+    function startLesson(name) {
+      currentWords = name === "전체 연습" ? allWords : lessons[name];
+
+      if (currentWords.length === 0) {
+        alert("아직 등록된 단어가 없어요!");
+        return;
+      }
+
+      shuffledWords = shuffle(currentWords);
+      currentIndex = 0;
+      isFlipped = false;
+
+      document.getElementById("menu").style.display = "none";
+      document.getElementById("study").style.display = "block";
+
+      showCard();
+    }
+
+    function showCard() {
+      const word = shuffledWords[currentIndex];
+
+      document.getElementById("progress").textContent =
+        `${currentIndex + 1} / ${currentWords.length}`;
+
+      document.getElementById("cardContent").innerHTML =
+        `<div class="front">${word[0]}</div>`;
+
+      isFlipped = false;
+    }
+
+    function flipCard() {
+      if (currentWords.length === 0) return;
+
+      if (!isFlipped) {
+        const word = shuffledWords[currentIndex];
+
+        document.getElementById("cardContent").innerHTML = `
+          <div class="reading">${word[1]}</div>
+          <div class="meaning">${word[2]}</div>
+        `;
+
+        isFlipped = true;
+      } else {
+        currentIndex++;
+
+        if (currentIndex >= shuffledWords.length) {
+          shuffledWords = shuffle(currentWords);
+          currentIndex = 0;
+        }
+
+        showCard();
+      }
+    }
+
+    function goMenu() {
+      document.getElementById("study").style.display = "none";
+      document.getElementById("menu").style.display = "grid";
+
+      currentWords = [];
+      shuffledWords = [];
+      currentIndex = 0;
+      isFlipped = false;
+    }
+  </script>
+</body>
+</html>
