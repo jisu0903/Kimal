@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💢 일본어 교과서 암기2💦</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,23 +14,23 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #fff8f7;
+      background: #fff7f6;
       color: #393333;
       font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px 16px;
+      padding: 24px 17px;
     }
 
     .container {
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       text-align: center;
     }
 
     h1 {
-      font-size: 27px;
+      font-size: 29px;
       margin: 0 0 5px;
       font-weight: 800;
       letter-spacing: -1px;
@@ -37,28 +38,28 @@
 
     .subtitle {
       color: #ad8585;
-      font-size: 14px;
-      margin-bottom: 35px;
+      font-size: 15px;
+      margin-bottom: 38px;
       font-weight: 600;
     }
 
     .menu {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 13px;
     }
 
     .menu button {
       border: 1px solid #f0dada;
-      background: white;
+      background: #fff;
       color: #644c4c;
-      border-radius: 15px;
-      padding: 20px 10px;
-      font-size: 17px;
+      border-radius: 16px;
+      padding: 23px 10px;
+      font-size: 21px;
       font-weight: 700;
       cursor: pointer;
       transition: 0.15s;
-      box-shadow: 0 3px 8px rgba(120, 75, 75, 0.05);
+      box-shadow: 0 3px 9px rgba(120, 75, 75, 0.06);
     }
 
     .menu button:hover {
@@ -71,6 +72,26 @@
       background: #f8e5e5;
     }
 
+    .extra-link {
+      display: block;
+      margin-top: 20px;
+      padding: 17px 12px;
+      border: 1px solid #e9cccc;
+      border-radius: 15px;
+      background: #fceeee;
+      color: #805e5e;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 3px 9px rgba(120, 75, 75, 0.05);
+      transition: 0.15s;
+    }
+
+    .extra-link:hover {
+      background: #f8e2e2;
+      transform: translateY(-2px);
+    }
+
     .study {
       display: none;
     }
@@ -78,41 +99,35 @@
     .topbar {
       display: flex;
       justify-content: flex-start;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     .back-button {
       border: none;
       background: #f5e5e5;
       color: #765959;
-      border-radius: 10px;
-      padding: 9px 14px;
-      font-size: 14px;
+      border-radius: 11px;
+      padding: 11px 17px;
+      font-size: 16px;
       font-weight: 700;
       cursor: pointer;
     }
 
-    .progress {
-      font-size: 13px;
-      color: #a98d8d;
-      margin-bottom: 13px;
-    }
-
     .card {
       width: 100%;
-      min-height: 280px;
-      background: white;
+      min-height: 370px;
+      background: #fff;
       border: 1px solid #f0dddd;
-      border-radius: 23px;
-      box-shadow: 0 7px 22px rgba(120, 75, 75, 0.08);
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(120, 75, 75, 0.08);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 30px 20px;
+      padding: 38px 20px;
       cursor: pointer;
       user-select: none;
-      transition: background 0.15s;
+      transition: background 0.12s;
     }
 
     .card:active {
@@ -120,32 +135,44 @@
     }
 
     .front {
-      font-size: 43px;
-      font-weight: 700;
+      font-size: clamp(48px, 15vw, 72px);
+      font-weight: 750;
+      line-height: 1.35;
       word-break: keep-all;
     }
 
     .reading {
-      font-size: 25px;
+      font-size: 34px;
       font-weight: 700;
       color: #bd7777;
-      margin-bottom: 15px;
+      margin-bottom: 22px;
+      line-height: 1.4;
     }
 
     .meaning {
-      font-size: 21px;
+      font-size: 28px;
+      font-weight: 600;
       color: #554747;
-      line-height: 1.5;
+      line-height: 1.6;
       white-space: pre-line;
+      word-break: keep-all;
     }
 
     @media (max-width: 380px) {
       h1 {
-        font-size: 23px;
+        font-size: 25px;
       }
 
-      .front {
-        font-size: 36px;
+      .card {
+        min-height: 320px;
+      }
+
+      .reading {
+        font-size: 30px;
+      }
+
+      .meaning {
+        font-size: 25px;
       }
     }
   </style>
@@ -166,12 +193,19 @@
       <button onclick="startLesson('전체 연습')">전체 연습</button>
     </section>
 
+    <a
+      class="extra-link"
+      href="https://jisu0903.github.io/Doubleslit/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      동사 · 형용사 암기 사이트 →
+    </a>
+
     <section id="study" class="study">
       <div class="topbar">
         <button class="back-button" onclick="goMenu()">← 메뉴</button>
       </div>
-
-      <div id="progress" class="progress"></div>
 
       <div id="card" class="card" onclick="flipCard()">
         <div id="cardContent"></div>
@@ -241,7 +275,7 @@
       ["山梨県", "やまなしけん", "야마나시현"]
     ];
 
-    // 나중에 추가할 단어
+    // 7과, 8과, 기타 한자
     const lesson7Words = [];
     const lesson8Words = [];
     const otherWords = [];
@@ -293,6 +327,7 @@
       isFlipped = false;
 
       document.getElementById("menu").style.display = "none";
+      document.querySelector(".extra-link").style.display = "none";
       document.getElementById("study").style.display = "block";
 
       showCard();
@@ -300,9 +335,6 @@
 
     function showCard() {
       const word = shuffledWords[currentIndex];
-
-      document.getElementById("progress").textContent =
-        `${currentIndex + 1} / ${currentWords.length}`;
 
       document.getElementById("cardContent").innerHTML =
         `<div class="front">${word[0]}</div>`;
@@ -337,6 +369,7 @@
     function goMenu() {
       document.getElementById("study").style.display = "none";
       document.getElementById("menu").style.display = "grid";
+      document.querySelector(".extra-link").style.display = "block";
 
       currentWords = [];
       shuffledWords = [];
