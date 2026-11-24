@@ -303,7 +303,7 @@
       document.getElementById("mapQuestion").textContent = item[1];
       document.getElementById("mapProgress").textContent = `문제 ${mapIndex + 1} / ${mapQuestions.length} · 정답 ${mapCorrect}개`;
       document.getElementById("mapProgressFill").style.width = `${mapIndex / mapQuestions.length * 100}%`;
-      document.getElementById("mapFeedback").textContent = "지도의 해당 지역을 눌러 주세요.";
+      document.getElementById("mapFeedback").textContent = "지도의 해당 지역을 클릭! 확대 가능합니다.";
       document.getElementById("mapFeedback").className = "map-feedback";
       document.getElementById("mapNext").disabled = true;
       document.getElementById("mapNext").textContent = "다음 문제";
@@ -344,7 +344,7 @@
       document.getElementById("mapQuizContent").hidden = true;
       document.getElementById("mapResult").hidden = false;
       document.getElementById("mapFinalScore").textContent = `${mapCorrect} / ${regions.length}`;
-      document.getElementById("mapFinalText").textContent = `22개 지역 중 ${mapCorrect}개를 맞혔어요. 다시 풀면 문제 순서가 바뀝니다.`;
+      document.getElementById("mapFinalText").textContent = `22개 지역 중 ${mapCorrect}개를 맞혔어요... 파이팅!`;
     }
     function goMenu() {
       document.getElementById("study").style.display = "none";
