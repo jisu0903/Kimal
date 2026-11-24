@@ -1,183 +1,101 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💢 일본어 교과서 암기2💦</title>
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      min-height: 100vh;
-      background: #fff7f6;
-      color: #393333;
+      margin: 0; min-height: 100vh; background: #fff7f6; color: #393333;
       font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 17px;
+      display: flex; justify-content: center; align-items: center; padding: 24px 17px;
     }
-
-    .container {
-      width: 100%;
-      max-width: 480px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 29px;
-      margin: 0 0 5px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .subtitle {
-      color: #ad8585;
-      font-size: 15px;
-      margin-bottom: 38px;
-      font-weight: 600;
-    }
-
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 13px;
-    }
-
+    .container { width: 100%; max-width: 480px; text-align: center; }
+    h1 { font-size: 29px; margin: 0 0 5px; font-weight: 800; letter-spacing: -1px; }
+    .subtitle { color: #ad8585; font-size: 15px; margin-bottom: 38px; font-weight: 600; }
+    .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
     .menu button {
-      border: 1px solid #f0dada;
-      background: #fff;
-      color: #644c4c;
-      border-radius: 16px;
-      padding: 23px 10px;
-      font-size: 21px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.15s;
-      box-shadow: 0 3px 9px rgba(120, 75, 75, 0.06);
+      border: 1px solid #f0dada; background: #fff; color: #644c4c; border-radius: 16px;
+      padding: 23px 10px; font-size: 21px; font-weight: 700; cursor: pointer;
+      transition: 0.15s; box-shadow: 0 3px 9px rgba(120,75,75,.06);
     }
-
-    .menu button:hover {
-      background: #fff0f0;
-      transform: translateY(-2px);
-    }
-
-    .menu button:last-child {
-      grid-column: span 2;
-      background: #f8e5e5;
-    }
-
+    .menu button:hover { background: #fff0f0; transform: translateY(-2px); }
+    .menu button:last-child { grid-column: span 2; background: #f8e5e5; }
+    .menu button.map-menu { grid-column: span 2; background: #f4e8e5; border-color: #e8ceca; }
     .extra-link {
-      display: block;
-      margin-top: 20px;
-      padding: 17px 12px;
-      border: 1px solid #e9cccc;
-      border-radius: 15px;
-      background: #fceeee;
-      color: #805e5e;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: 0 3px 9px rgba(120, 75, 75, 0.05);
-      transition: 0.15s;
+      display: block; margin-top: 20px; padding: 17px 12px; border: 1px solid #e9cccc;
+      border-radius: 15px; background: #fceeee; color: #805e5e; text-decoration: none;
+      font-size: 16px; font-weight: 700; box-shadow: 0 3px 9px rgba(120,75,75,.05); transition: .15s;
     }
-
-    .extra-link:hover {
-      background: #f8e2e2;
-      transform: translateY(-2px);
-    }
-
-    .study {
-      display: none;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 18px;
-    }
-
+    .extra-link:hover { background: #f8e2e2; transform: translateY(-2px); }
+    .study, .map-study { display: none; }
+    .topbar { display: flex; justify-content: flex-start; margin-bottom: 18px; }
     .back-button {
-      border: none;
-      background: #f5e5e5;
-      color: #765959;
-      border-radius: 11px;
-      padding: 11px 17px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
+      border: none; background: #f5e5e5; color: #765959; border-radius: 11px;
+      padding: 11px 17px; font-size: 16px; font-weight: 700; cursor: pointer;
     }
-
     .card {
-      width: 100%;
-      min-height: 370px;
-      background: #fff;
-      border: 1px solid #f0dddd;
-      border-radius: 25px;
-      box-shadow: 0 8px 25px rgba(120, 75, 75, 0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 38px 20px;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.12s;
+      width: 100%; min-height: 370px; background: #fff; border: 1px solid #f0dddd;
+      border-radius: 25px; box-shadow: 0 8px 25px rgba(120,75,75,.08); display: flex;
+      flex-direction: column; justify-content: center; align-items: center; padding: 38px 20px;
+      cursor: pointer; user-select: none; transition: background .12s;
     }
+    .card:active { background: #fffafa; }
+    .front { font-size: clamp(48px,15vw,72px); font-weight: 750; line-height: 1.35; word-break: keep-all; }
+    .reading { font-size: 34px; font-weight: 700; color: #bd7777; margin-bottom: 22px; line-height: 1.4; }
+    .meaning { font-size: 28px; font-weight: 600; color: #554747; line-height: 1.6; white-space: pre-line; word-break: keep-all; }
 
-    .card:active {
-      background: #fffafa;
+    /* 일본 지도 퀴즈 */
+    .map-panel {
+      background: #fff; border: 1px solid #f0dddd; border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(120,75,75,.07); padding: 17px 12px 18px;
     }
-
-    .front {
-      font-size: clamp(48px, 15vw, 72px);
-      font-weight: 750;
-      line-height: 1.35;
-      word-break: keep-all;
+    .map-instruction { color: #ad8585; font-size: 14px; font-weight: 700; margin: 2px 0 8px; }
+    .map-question { font-size: 36px; font-weight: 800; color: #594343; margin: 0 0 5px; }
+    .map-progress { color: #987878; font-size: 13px; margin-bottom: 13px; font-weight: 700; }
+    .progress-track { height: 7px; background: #f6eaea; border-radius: 99px; overflow: hidden; margin: 0 5px 15px; }
+    .progress-fill { height: 100%; width: 0; background: #c58b8b; transition: width .2s; }
+    .map-frame { position: relative; width: 100%; line-height: 0; overflow: hidden; border-radius: 8px; background: #fff; }
+    .map-frame { position: relative; width: 100%; overflow: hidden; border-radius: 8px; background: #fff; padding: 4px; }
+    #japanMapSvg { display: block; width: 100%; height: auto; max-height: 65vh; }
+    #japanMapSvg .prefecture { cursor: pointer; outline: none; }
+    #japanMapSvg .prefecture path,
+    #japanMapSvg .prefecture polygon,
+    #japanMapSvg .prefecture rect { fill: #fff; stroke: #333; stroke-width: 1.15; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: fill .12s, stroke .12s; }
+    #japanMapSvg .prefecture:hover path,
+    #japanMapSvg .prefecture:hover polygon,
+    #japanMapSvg .prefecture:hover rect { fill: #f7e9e7; }
+    #japanMapSvg .prefecture.correct path,
+    #japanMapSvg .prefecture.correct polygon,
+    #japanMapSvg .prefecture.correct rect { fill: #a9d9c1; stroke: #27885d; stroke-width: 2; }
+    #japanMapSvg .prefecture.wrong path,
+    #japanMapSvg .prefecture.wrong polygon,
+    #japanMapSvg .prefecture.wrong rect { fill: #efb4b4; stroke: #c84e4e; stroke-width: 2; }
+    #japanMapSvg .boundary-line { pointer-events: none; }
+    .map-credit { color: #ad9292; font-size: 10px; margin-top: 8px; line-height: 1.5; }
+    .map-credit a { color: inherit; }
+    .map-feedback { min-height: 27px; margin: 12px 0 4px; font-size: 15px; font-weight: 700; color: #765959; }
+    .map-feedback.good { color: #27885d; }
+    .map-feedback.bad { color: #c84e4e; }
+    .map-next, .map-restart {
+      border: 0; border-radius: 12px; background: #f2dfdf; color: #765959;
+      padding: 12px 22px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 8px;
     }
-
-    .reading {
-      font-size: 34px;
-      font-weight: 700;
-      color: #bd7777;
-      margin-bottom: 22px;
-      line-height: 1.4;
-    }
-
-    .meaning {
-      font-size: 28px;
-      font-weight: 600;
-      color: #554747;
-      line-height: 1.6;
-      white-space: pre-line;
-      word-break: keep-all;
-    }
-
+    .map-next:disabled { opacity: .45; cursor: default; }
+    .map-result { padding: 35px 15px; }
+    .map-result h2 { font-size: 27px; margin: 0 0 12px; color: #594343; }
+    .map-result .score { font-size: 42px; color: #bd7777; font-weight: 800; margin: 12px 0; }
+    .map-result p { color: #806969; line-height: 1.7; }
     @media (max-width: 380px) {
-      h1 {
-        font-size: 25px;
-      }
-
-      .card {
-        min-height: 320px;
-      }
-
-      .reading {
-        font-size: 30px;
-      }
-
-      .meaning {
-        font-size: 25px;
-      }
+      h1 { font-size: 25px; }
+      .card { min-height: 320px; }
+      .reading { font-size: 30px; }
+      .meaning { font-size: 25px; }
+      .map-question { font-size: 32px; }
     }
   </style>
 </head>
-
 <body>
   <main class="container">
     <h1>💢 일본어 교과서 암기2💦</h1>
@@ -191,24 +109,38 @@
       <button onclick="startLesson('8과')">8과</button>
       <button onclick="startLesson('기타 한자')">기타 한자</button>
       <button onclick="startLesson('전체 연습')">전체 연습</button>
+      <button class="map-menu" onclick="startMapQuiz()">🗾 일본 지리 암기</button>
     </section>
 
-    <a
-      class="extra-link"
-      href="https://jisu0903.github.io/Doubleslit/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="extra-link" href="https://jisu0903.github.io/Doubleslit/" target="_blank" rel="noopener noreferrer">
       동사 · 형용사 암기 사이트 →
     </a>
 
     <section id="study" class="study">
-      <div class="topbar">
-        <button class="back-button" onclick="goMenu()">← 메뉴</button>
-      </div>
+      <div class="topbar"><button class="back-button" onclick="goMenu()">← 메뉴</button></div>
+      <div id="card" class="card" onclick="flipCard()"><div id="cardContent"></div></div>
+    </section>
 
-      <div id="card" class="card" onclick="flipCard()">
-        <div id="cardContent"></div>
+    <section id="mapStudy" class="map-study">
+      <div class="topbar"><button class="back-button" onclick="goMenu()">← 메뉴</button></div>
+      <div class="map-panel">
+        <div id="mapQuizContent">
+          <div class="map-instruction">다음 지역의 위치를 지도에서 선택하세요</div>
+          <div id="mapQuestion" class="map-question">あおもり</div>
+          <div id="mapProgress" class="map-progress">문제 1 / 22 · 정답 0개</div>
+          <div class="progress-track"><div id="mapProgressFill" class="progress-fill"></div></div>
+          <div class="map-frame" id="mapFrame">
+            <div id="mapLoading" style="padding:55px 10px;color:#987878;font-size:14px;line-height:1.7">일본 지도를 불러오는 중…</div>
+          </div>
+          <div class="map-credit">지도 경계 데이터: <a href="https://github.com/geolonia/japanese-prefectures" target="_blank" rel="noopener">geolonia/japanese-prefectures</a> (GFDL)</div>
+          <div id="mapFeedback" class="map-feedback" aria-live="polite">지도의 해당 지역을 눌러 주세요.</div>
+          <button id="mapNext" class="map-next" onclick="nextMapQuestion()" disabled>다음 문제</button>
+        </div>
+        <div id="mapResult" class="map-result" hidden>
+          <h2>학습 완료!</h2><div id="mapFinalScore" class="score">0 / 22</div>
+          <p id="mapFinalText"></p>
+          <button class="map-restart" onclick="startMapQuiz()">다시 풀기</button>
+        </div>
       </div>
     </section>
   </main>
@@ -216,165 +148,210 @@
   <script>
     // 4과
     const lesson4Words = [
-      ["三浦", "みうら", "미우라"],
-      ["細川", "ほそかわ", "호소카와"],
-      ["山下", "やました", "야마시타"],
-      ["前田", "まえだ", "마에다"],
-      ["田中", "たなか", "다나카"],
-      ["東西南北", "とうざいなんぼく", "동서남북"],
-      ["お辞儀", "おじぎ", "오지기"],
-      ["お土産", "おみやげ", "오미야게"],
-      ["根付", "ねづく", "식물이 뿌리를 내리다"],
-      ["寝付", "ねつく", "오랜 병을 앓다"],
-      ["お中元", "おちゅうげん", "오추겐"],
-      ["お歳暮", "おせいぼ", "오세이보"],
-      ["先生", "せんせい", "선생님"],
-      ["失礼", "しつれい", "실례"]
+      ["三浦", "みうら", "미우라"], ["細川", "ほそかわ", "호소카와"], ["山下", "やました", "야마시타"],
+      ["前田", "まえだ", "마에다"], ["田中", "たなか", "다나카"], ["東西南北", "とうざいなんぼく", "동서남북"],
+      ["お辞儀", "おじぎ", "오지기"], ["お土産", "おみやげ", "오미야게"], ["根付", "ねづく", "식물이 뿌리를 내리다"],
+      ["寝付", "ねつく", "오랜 병을 앓다"], ["お中元", "おちゅうげん", "오추겐"], ["お歳暮", "おせいぼ", "오세이보"],
+      ["先生", "せんせい", "선생님"], ["失礼", "しつれい", "실례"]
     ];
-
     // 5과
     const lesson5Words = [
-      ["部活", "ぶかつ", "동아리 활동"],
-      ["文化祭", "ぶんかさい", "문화제"],
-      ["質問", "しつもん", "질문"],
-      ["発表", "はっぴょう", "발표"],
-      ["元気", "げんきだ", "건강하다"],
-      ["社長", "しゃちょう", "사장"],
-      ["年", "ねん", "년 / 학년"],
-      ["組", "くみ", "반"],
-      ["売", "うる", "팔다"],
-      ["お茶", "おちゃ", "차"],
-      ["買", "かう", "사다"],
-      ["焼", "やき", "구이, 구운 것"]
+      ["部活", "ぶかつ", "동아리 활동"], ["文化祭", "ぶんかさい", "문화제"], ["質問", "しつもん", "질문"],
+      ["発表", "はっぴょう", "발표"], ["元気", "げんきだ", "건강하다"], ["社長", "しゃちょう", "사장"],
+      ["年", "ねん", "년 / 학년"], ["組", "くみ", "반"], ["売", "うる", "팔다"], ["お茶", "おちゃ", "차"],
+      ["買", "かう", "사다"], ["焼", "やき", "구이, 구운 것"]
     ];
-
     // 6과
     const lesson6Words = [
-      ["年神様", "としがみさま", "새해의 신"],
-      ["お正月", "おしょうがつ", "정월, 설날"],
-      ["お年玉", "おとしだま", "세뱃돈"],
-      ["門松", "かどまつ", "가도마쓰"],
-      ["鏡餅", "かがみもち", "가가미모치"],
-      ["料理", "りょうり", "요리"],
-      ["関東", "かんとう", "간토"],
-      ["関西", "かんさい", "간사이"],
-      ["元日", "がんじつ", "새해 첫날"],
-      ["成人", "せいじん", "성인"],
-      ["花見", "はなみ", "꽃구경, 벚꽃놀이"],
-      ["七夕", "たなばた", "칠석"],
-      ["月見", "つきみ", "달맞이"],
-      ["七五三", "しちごさん", "시치고산"],
-      ["昭和", "しょうわ", "쇼와"],
-      ["子ども", "こども", "아이"],
-      ["お世話", "おせわ", "신세"],
-      ["練習", "れんしゅう", "연습"],
-      ["次", "つぎ", "다음"],
-      ["大会", "たいかい", "대회"],
-      ["今年", "ことし", "올해"],
-      ["家族", "かぞく", "가족"],
+      ["年神様", "としがみさま", "새해의 신"], ["お正月", "おしょうがつ", "정월, 설날"], ["お年玉", "おとしだま", "세뱃돈"],
+      ["門松", "かどまつ", "가도마쓰"], ["鏡餅", "かがみもち", "가가미모치"], ["料理", "りょうり", "요리"],
+      ["関東", "かんとう", "간토"], ["関西", "かんさい", "간사이"], ["元日", "がんじつ", "새해 첫날"],
+      ["成人", "せいじん", "성인"], ["花見", "はなみ", "꽃구경, 벚꽃놀이"], ["七夕", "たなばた", "칠석"],
+      ["月見", "つきみ", "달맞이"], ["七五三", "しちごさん", "시치고산"], ["昭和", "しょうわ", "쇼와"],
+      ["子ども", "こども", "아이"], ["お世話", "おせわ", "신세"], ["練習", "れんしゅう", "연습"],
+      ["次", "つぎ", "다음"], ["大会", "たいかい", "대회"], ["今年", "ことし", "올해"], ["家族", "かぞく", "가족"],
       ["山梨県", "やまなしけん", "야마나시현"]
     ];
-
     // 7과, 8과, 기타 한자
-    const lesson7Words = [];
-    const lesson8Words = [];
-    const otherWords = [];
-
-    const lessons = {
-      "4과": lesson4Words,
-      "5과": lesson5Words,
-      "6과": lesson6Words,
-      "7과": lesson7Words,
-      "8과": lesson8Words,
-      "기타 한자": otherWords
-    };
-
-    const allWords = [
-      ...lesson4Words,
-      ...lesson5Words,
-      ...lesson6Words,
-      ...lesson7Words,
-      ...lesson8Words,
-      ...otherWords
-    ];
-
-    let currentWords = [];
-    let shuffledWords = [];
-    let currentIndex = 0;
-    let isFlipped = false;
+    const lesson7Words = [], lesson8Words = [], otherWords = [];
+    const lessons = { "4과": lesson4Words, "5과": lesson5Words, "6과": lesson6Words, "7과": lesson7Words, "8과": lesson8Words, "기타 한자": otherWords };
+    const allWords = [...lesson4Words, ...lesson5Words, ...lesson6Words, ...lesson7Words, ...lesson8Words, ...otherWords];
+    let currentWords = [], shuffledWords = [], currentIndex = 0, isFlipped = false;
 
     function shuffle(array) {
       const result = [...array];
-
-      for (let i = result.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [result[i], result[j]] = [result[j], result[i]];
-      }
-
+      for (let i = result.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [result[i], result[j]] = [result[j], result[i]]; }
       return result;
     }
-
     function startLesson(name) {
       currentWords = name === "전체 연습" ? allWords : lessons[name];
-
-      if (currentWords.length === 0) {
-        alert("아직 등록된 단어가 없어요!");
-        return;
-      }
-
-      shuffledWords = shuffle(currentWords);
-      currentIndex = 0;
-      isFlipped = false;
-
+      if (currentWords.length === 0) { alert("아직 등록된 단어가 없어요!"); return; }
+      shuffledWords = shuffle(currentWords); currentIndex = 0; isFlipped = false;
       document.getElementById("menu").style.display = "none";
       document.querySelector(".extra-link").style.display = "none";
       document.getElementById("study").style.display = "block";
-
       showCard();
     }
-
     function showCard() {
       const word = shuffledWords[currentIndex];
-
-      document.getElementById("cardContent").innerHTML =
-        `<div class="front">${word[0]}</div>`;
-
+      document.getElementById("cardContent").innerHTML = `<div class="front">${word[0]}</div>`;
+      document.getElementById("card").onclick = flipCard;
       isFlipped = false;
     }
-
     function flipCard() {
       if (currentWords.length === 0) return;
-
       if (!isFlipped) {
         const word = shuffledWords[currentIndex];
-
-        document.getElementById("cardContent").innerHTML = `
-          <div class="reading">${word[1]}</div>
-          <div class="meaning">${word[2]}</div>
-        `;
-
+        document.getElementById("cardContent").innerHTML = `<div class="reading">${word[1]}</div><div class="meaning">${word[2]}</div>`;
         isFlipped = true;
       } else {
         currentIndex++;
-
-        if (currentIndex >= shuffledWords.length) {
-          shuffledWords = shuffle(currentWords);
-          currentIndex = 0;
-        }
-
+        if (currentIndex >= shuffledWords.length) { shuffledWords = shuffle(currentWords); currentIndex = 0; }
         showCard();
       }
     }
 
+    // 학습지에 실린 22개 지역. 지도 SVG의 도도부현 코드(JIS X 0401)와 연결
+    const regions = [
+      [1,"ほっかいどう","홋카이도","01"],[2,"あおもり","아오모리","02"],[3,"みやぎ","미야기","04"],
+      [4,"とうきょう","도쿄","13"],[5,"ちば","치바","12"],[6,"かながわ","가나가와","14"],
+      [7,"やまなし","야마나시","19"],[8,"しずおか","시즈오카","22"],[9,"あいち","아이치","23"],
+      [10,"しが","시가","25"],[11,"きょうと","교토","26"],[12,"ひょうご","효고","28"],
+      [13,"なら","나라","29"],[14,"おおさか","오사카","27"],[15,"ひろしま","히로시마","34"],
+      [16,"とくしま","도쿠시마","36"],[17,"こうち","고치","39"],[18,"ふくおか","후쿠오카","40"],
+      [19,"ながさき","나가사키","42"],[20,"くまもと","구마모토","43"],[21,"かごしま","가고시마","46"],
+      [22,"おきなわ","오키나와","47"]
+    ];
+    let mapQuestions = [], mapIndex = 0, mapCorrect = 0, mapLocked = false, mapLoaded = false;
+
+    async function loadJapanMap() {
+      if (mapLoaded) return;
+      const frame = document.getElementById("mapFrame");
+      const sources = [
+        "https://cdn.jsdelivr.net/gh/geolonia/japanese-prefectures@master/map-full.svg",
+        "https://raw.githubusercontent.com/geolonia/japanese-prefectures/master/map-full.svg"
+      ];
+      let svgText = null;
+      for (const url of sources) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) continue;
+          svgText = await response.text();
+          if (svgText.includes("<svg")) break;
+          svgText = null;
+        } catch (error) { /* 다음 공개 미러 시도 */ }
+      }
+      if (!svgText) {
+        document.getElementById("mapLoading").innerHTML = "지도를 불러오지 못했어요.<br>인터넷 연결을 확인한 뒤 다시 메뉴에서 들어와 주세요.";
+        return;
+      }
+      const parsed = new DOMParser().parseFromString(svgText, "image/svg+xml");
+      const svg = parsed.documentElement;
+      if (svg.querySelector("parsererror")) {
+        document.getElementById("mapLoading").textContent = "지도 파일을 읽지 못했어요.";
+        return;
+      }
+      svg.removeAttribute("width");
+      svg.removeAttribute("height");
+      svg.setAttribute("id", "japanMapSvg");
+      svg.setAttribute("role", "group");
+      svg.setAttribute("aria-label", "일본 도도부현 지도");
+      // SVG 내부의 텍스트 라벨을 제거해 퀴즈 정답이 미리 보이지 않게 함
+      svg.querySelectorAll("text, .label, .prefecture-label").forEach(el => el.remove());
+      const prefectures = svg.querySelectorAll(".prefecture[data-code]");
+      if (!prefectures.length) {
+        document.getElementById("mapLoading").textContent = "지도 경계 데이터를 찾지 못했어요.";
+        return;
+      }
+      const codeToQuestion = new Map(regions.map(region => [region[3], region[0]]));
+      prefectures.forEach(pref => {
+        const code = String(pref.dataset.code || pref.getAttribute("data-code")).padStart(2, "0");
+        const questionId = codeToQuestion.get(code);
+        if (!questionId) {
+          pref.style.pointerEvents = "none";
+          pref.style.cursor = "default";
+          return;
+        }
+        pref.classList.add("map-prefecture");
+        pref.setAttribute("tabindex", "0");
+        pref.setAttribute("role", "button");
+        const region = regions.find(r => r[0] === questionId);
+        pref.setAttribute("aria-label", region[2] + " 선택");
+        pref.addEventListener("click", () => chooseRegion(questionId));
+        pref.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); chooseRegion(questionId); }
+        });
+      });
+      // 텍스트 라벨이 제거된 뒤 지도 자체의 클릭 영역만 남긴다.
+      frame.innerHTML = "";
+      frame.appendChild(svg);
+      mapLoaded = true;
+    }
+
+    function startMapQuiz() {
+      mapQuestions = shuffle(regions); mapIndex = 0; mapCorrect = 0; mapLocked = false;
+      document.getElementById("menu").style.display = "none";
+      document.querySelector(".extra-link").style.display = "none";
+      document.getElementById("study").style.display = "none";
+      document.getElementById("mapStudy").style.display = "block";
+      document.getElementById("mapQuizContent").hidden = false;
+      document.getElementById("mapResult").hidden = true;
+      loadJapanMap().then(() => showMapQuestion());
+    }
+    function showMapQuestion() {
+      const item = mapQuestions[mapIndex];
+      document.getElementById("mapQuestion").textContent = item[1];
+      document.getElementById("mapProgress").textContent = `문제 ${mapIndex + 1} / ${mapQuestions.length} · 정답 ${mapCorrect}개`;
+      document.getElementById("mapProgressFill").style.width = `${mapIndex / mapQuestions.length * 100}%`;
+      document.getElementById("mapFeedback").textContent = "지도의 해당 지역을 눌러 주세요.";
+      document.getElementById("mapFeedback").className = "map-feedback";
+      document.getElementById("mapNext").disabled = true;
+      document.getElementById("mapNext").textContent = "다음 문제";
+      document.querySelectorAll("#japanMapSvg .prefecture").forEach(el => el.classList.remove("correct", "wrong"));
+      mapLocked = false;
+    }
+    function chooseRegion(id) {
+      if (mapLocked) return;
+      mapLocked = true;
+      const answer = mapQuestions[mapIndex];
+      const feedback = document.getElementById("mapFeedback");
+      const next = document.getElementById("mapNext");
+      const selected = regions.find(r => r[0] === id);
+      const selectedPath = document.querySelector(`#japanMapSvg .prefecture[data-code="${selected[3]}"]`);
+      const answerPath = document.querySelector(`#japanMapSvg .prefecture[data-code="${answer[3]}"]`);
+      if (id === answer[0]) {
+        mapCorrect++;
+        selectedPath?.classList.add("correct");
+        feedback.textContent = `정답! ${answer[2]} (${answer[1]})`;
+        feedback.className = "map-feedback good";
+      } else {
+        selectedPath?.classList.add("wrong");
+        answerPath?.classList.add("correct");
+        feedback.textContent = `오답! 정답은 ${answer[2]} (${answer[1]})입니다.`;
+        feedback.className = "map-feedback bad";
+      }
+      document.getElementById("mapProgress").textContent = `문제 ${mapIndex + 1} / ${mapQuestions.length} · 정답 ${mapCorrect}개`;
+      next.disabled = false;
+      next.textContent = mapIndex === mapQuestions.length - 1 ? "결과 보기" : "다음 문제";
+    }
+    function nextMapQuestion() {
+      if (!mapLocked) return;
+      mapIndex++;
+      if (mapIndex >= mapQuestions.length) { showMapResult(); return; }
+      showMapQuestion();
+    }
+    function showMapResult() {
+      document.getElementById("mapQuizContent").hidden = true;
+      document.getElementById("mapResult").hidden = false;
+      document.getElementById("mapFinalScore").textContent = `${mapCorrect} / ${regions.length}`;
+      document.getElementById("mapFinalText").textContent = `22개 지역 중 ${mapCorrect}개를 맞혔어요. 다시 풀면 문제 순서가 바뀝니다.`;
+    }
     function goMenu() {
       document.getElementById("study").style.display = "none";
+      document.getElementById("mapStudy").style.display = "none";
       document.getElementById("menu").style.display = "grid";
       document.querySelector(".extra-link").style.display = "block";
-
-      currentWords = [];
-      shuffledWords = [];
-      currentIndex = 0;
-      isFlipped = false;
+      currentWords = []; shuffledWords = []; currentIndex = 0; isFlipped = false;
     }
   </script>
 </body>
